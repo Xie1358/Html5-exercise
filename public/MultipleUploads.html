@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+    <title></title>
+    <style>
+        #zone1 {
+            width: 700px;
+            height: 100px;
+            border: 1px solid green;
+            overflow-y: auto;
+        }
+
+        .thumb {
+            height: 80px;
+            margin: 10px;
+            box-shadow: 3px 2px 5px silver;
+        }
+
+        /*#div2{
+           width:200px;
+           height:300px;
+           background-image:url(images/trashcan.jpg);
+           background-size:contain;
+           background-repeat:no-repeat;
+        }*/
+    </style>
+
+</head>
+<body>
+    <input type="file" id="file1" multiple accept="image/*" />
+    <input type="button" value="上傳" id="buttonUpload" />
+    <div id="zone1"></div>
+    <script>
+        var myFile = document.getElementById("file1"),            
+            theZone = document.getElementById("zone1"),
+            uploadfiles = new Array(),
+            xhr = null;
+
+        myFile.addEventListener("change", function () {
+            show(this.files);
+        }, false);
+
+        theZone.addEventListener("dragover", function (event) {
+            event.preventDefault();
+        });
+        theZone.addEventListener("drop", function (event) {
+            event.preventDefault();
+            show(event.dataTransfer.files);
+        }, false);
+
+
+        document.getElementById("buttonUpload").addEventListener("click", send, false);
+
+        function show(myFiles) {
+            for (var i = 0, max = myFiles.length; i < max; i++) {
+                //將檔案放進陣列中
+                uploadfiles.push(myFiles[i])
+                //顯示圖片
+                fileViewer(myFiles[i],i);
+            }           
+        }
+
+        function fileViewer(theFile,i) {
+            //theFile 就是File物件
+            var reader = new FileReader();
+            reader.addEventListener("load", function (event) {
+                var imageContent = event.target.result;
+                //<img src="..." class="thumb">
+                var eleImg = document.createElement("img");
+                eleImg.setAttribute("src", imageContent);
+                eleImg.setAttribute("title", theFile.name);
+                eleImg.setAttribute("id", "img" + i);
+                eleImg.className = "thumb";
+
+                //click image 刪除圖片
+                eleImg.addEventListener("dblclick", function () {
+                    removeImg(this);
+                }, false)
+
+                theZone.appendChild(eleImg);
+            }, false);
+            reader.readAsDataURL(theFile);
+
+        }
+        function removeImg(obj) {
+            //透過 filter 的過濾條件為true返回一個新陣列(移除圖片後的新陣列)
+            uploadfiles = uploadfiles.filter(function (value) {
+                return value.name != obj.getAttribute("title");
+            });
+            //console.log(uploadfiles);
+            //移除網頁上被點選的圖片
+            obj.parentNode.removeChild(obj);
+            // obj.remove(obj);
+        }
+       
+        function send() {  
+            //將陣列中的圖片上傳到Server端
+            for (var i = 0, max = uploadfiles.length; i < max; i++) {
+                var formData = new FormData();
+                formData.append("myFile", uploadfiles[i]);
+                var xhr = new XMLHttpRequest();
+                xhr.addEventListener("load", function () {
+                    console.log(xhr.responseText);
+                })   
+                xhr.open("POST", "api/upload");
+                xhr.send(formData);
+            }         
+        }
+
+    </script>
+</body>
+</html>

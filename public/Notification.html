@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Notification Demo</title>
+  </head>
+  <body>
+    <button id="button1">桌面提醒</button>
+
+    <script>
+      var btn = document.querySelector("#button1");
+      btn.addEventListener("click", load);
+      var notification;
+      function load() {
+        console.log(Notification.permission);
+        if (Notification.permission === "granted") {
+          //console.log("允許");
+          notification = new Notification("MFEE04", {
+            body: "Notification Demo...",
+            icon: "images/dr_fate.jpg"
+          });
+          notification.addEventListener("show", function() {
+            setTimeout("notification.close()", 3000);
+          });
+        } else if (Notification.permission === "default") {
+          console.log("要求權限");
+          getPermission(load);
+        } else {
+          console.log("拒絕");
+        }
+      }
+
+      function getPermission(cb) {
+        Notification.requestPermission(cb);//此行顯示"要求存取權限"
+      }
+      // 設定 進階 網站設定 通知內修改
+    </script>
+  </body>
+</html>

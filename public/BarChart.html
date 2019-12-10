@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas Demo</title>
+    <style>
+        #myCanvas {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="400px" height="300px"></canvas>
+
+    <script>
+        var canvas = document.querySelector('#myCanvas');
+        var context = canvas.getContext("2d");
+
+        datas = [90, 50, 170, 180, 50, 60], w = 50, h = 0, x = 20,
+            y = canvas.height;
+        context.fillStyle = "green";
+        for (var i = 0, max = datas.length; i < max; i++) {
+            h = datas[i];
+            context.fillRect(x, y - h, w, h);
+            x = x + w + 10;
+        }
+
+    </script>
+</body>
+
+</html>

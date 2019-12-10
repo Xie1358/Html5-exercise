@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>未命名 1</title>
+<style type="text/css">
+canvas { border: solid 1px green; }
+div { background-color: orange; }
+</style>
+<script>
+window.onload = function(){
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+
+//Using a Simple Linear Gradient
+var gradient = context.createLinearGradient(20, 20, 120, 70);
+gradient.addColorStop(0.25, "red");
+gradient.addColorStop(0.5, "green");
+gradient.addColorStop(0.75, "blue");
+context.fillStyle = gradient;
+context.fillRect(20, 20, 100, 50);
+
+//Using a Linear Gradient with Complex Shapes
+
+// var gradient = context.createLinearGradient(0, 0, 300, 150);
+// gradient.addColorStop(0, "orange");
+// gradient.addColorStop(1, "purple");
+// context.fillStyle = gradient;
+// context.beginPath();
+// context.arc(50, 75, 45, 0.5 * Math.PI, 1.5 * Math.PI);
+// context.fill();
+// context.beginPath();
+// context.rect(50, 30, 100, 90);
+// context.fill();
+// context.beginPath();
+// context.arc(150, 75, 45, 0.5 * Math.PI, 1.5 * Math.PI, true);
+// context.fill();
+
+
+//Using a Simple Radial Gradient
+
+// var gradient = context.createRadialGradient(75, 75, 10, 75, 75, 60);
+// gradient.addColorStop(0, "yellow");
+// gradient.addColorStop(1, "blue");
+// context.fillStyle = gradient;
+// context.fillRect(20, 20, 110, 110);
+
+
+//Using a Complex Radial Gradient
+
+// var gradient = context.createRadialGradient(50, 75, 10, 205, 75, 80);
+// gradient.addColorStop(0, "orange");
+// gradient.addColorStop(0.5, "blue");
+// gradient.addColorStop(1, "red");
+// context.fillStyle = gradient;
+// context.fillRect(20, 20, 260, 110);
+
+//Using a Complex Radial Gradient for an Outline
+
+// var gradient = context.createRadialGradient(50, 75, 10, 205, 75, 80);
+// gradient.addColorStop(0, "orange");
+// gradient.addColorStop(0.5, "blue");
+// gradient.addColorStop(1, "red");
+// context.strokeStyle = gradient;
+// context.strokeRect(20, 20, 260, 110);
+
+}
+</script>
+</head>
+
+<body>
+<canvas id="canvas" width="300" height="150">
+<div>Please enable the canvas or download a new browser that supports it. You’re missing out
+on some really great graphics!</div>
+</canvas>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>未命名 1</title>
+    <style type="text/css">
+        canvas {
+            border: solid 1px green;
+        }
+
+        div {
+            background-color: orange;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            //Changing the Canvas Scale
+          
+            // context.fillStyle = "red";
+            // context.fillRect(10, 10, 30, 20); // draw the red rectangle
+            // context.scale(5, 4);
+            // context.fillStyle = "blue";
+            // context.fillRect(10, 10, 30, 20); // draw the blue rectangle
+          
+
+            //Rotating the Canvas Grid
+            // context.rotate(15 * Math.PI / 180); // rotate 15 degrees clockwise
+            // context.fillRect(30, 30, 50, 50); // draw a simple square
+
+
+            //Using the Translate Transformation           
+            // context.strokeRect(0, 0, canvas.width, canvas.height); // draw a frame around the canvas
+            // context.translate(canvas.width / 2, canvas.height / 2); // move the origin to the center of the canvas
+            // context.arc(0, 0, 50, 0, 2 * Math.PI); // draw a circle at the center
+            // context.fill();
+           
+
+            //Using Different Transformations Together
+
+            // context.strokeRect(0, 0, canvas.width, canvas.height); // draw a frame around everything
+            // context.translate(canvas.width / 2, canvas.height / 2);
+            // context.scale(4, 2); // enlarge the grid and stretch it horizontally
+            // context.arc(0, 0, 30, 0, 2 * Math.PI); // draw a circle skewed by the scale method to look like an ellipse
+            // context.fill();
+            // context.rotate(Math.PI); // turn upside down
+            // context.fillStyle = "orange";
+            // context.textAlign = "center";
+            // context.textBaseline = "middle";
+            // context.fillText("upside down", 0, 0); // draw the text "upside down" upside down
+
+
+            //Using the State Stack
+           
+            // context.font = "bold 14pt Arial";
+            // context.textAlign = "center";
+            // context.textBaseline = "middle";
+            // context.save(); // push the text settings to the state stack
+            // context.translate(10, 10);
+            // var length = 66;
+            // for (var i = 0; i < 4; i++) {
+            //    context.save(); // push the current position to the state stack
+            //    context.fillRect(0, 0, length, length);
+            //    context.save(); // push the current fill settings to the state stack
+            //    context.translate(length / 2, length / 2);
+            //    context.fillStyle = "orange";
+            //    context.scale(3, 2);
+            //    context.fillText(i + 1, 0, 0);
+            //    context.restore(); // restore the previous fill style, location and scale from the state stack
+            //    context.translate(2, length - 5);
+            //    context.fillStyle = "yellow";
+            //    context.fillRect(0, 0, length - 4, 3);
+            //    context.restore(); // restore the previous fill style and location from the state stack
+            //    context.translate(length + 4, 0);
+            // }
+            // context.restore(); // restore the original settings, including the base font and position, from the state stack
+            // context.translate(canvas.width / 2, length + 30);
+            // context.fillText("pick a number", 0, 0)
+
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="300" height="150">
+        <p>
+            Please enable the canvas or download a new browser that supports it. You’re missing out
+            on some really great graphics!
+        </p>
+    </canvas>
+</body>
+
+</html>

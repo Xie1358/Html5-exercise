@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket Client Demo</title>
+</head>
+<body>
+    <div id="div1"></div>
+
+    <script>
+       var theDiv = document.querySelector('#div1');
+       //https://www.npmjs.com/package/socket.io  node.js平台上socket.io最多人用 但無法用html5 WebSocket API連server 所以建議專題再用
+       //http是不會保持連線的協定 WebSocket(會保持連線的協定 可以用標準html5 WebSocket API call server端)可以把資料廣播給所有Client,可接和送資料(SSE只能接資料)
+       // HTML5(瀏覽器)提供的 WebSocket API 用 new連到Socket Server
+       //標準html5 WebSocket API(事件 open message close error,方法 send(DOM) send(Array) send(Blob) )
+       //建立websocket物件  http://websocket.org/echo.html 裡的 ws://echo.websocket.org 是伺服器
+       var client = new WebSocket("ws://echo.websocket.org")//收到什麼(send)就丟給message
+       //成功連線到Socket Server會觸發open事件
+       client.addEventListener("open",function(){
+         theDiv.innerHTML += "連線成功!!<br>"
+
+         //將資料傳給Socket Server
+         client.send("Hello WebSocket!!")
+       })
+       //接收Socket Server傳回來的資料
+       client.addEventListener("message",function(event){
+         theDiv.innerHTML += event.data +  "<br>"
+         //關閉連線
+         client.close();
+       })
+       //Socket Server連線的關閉會觸發close事件
+       client.addEventListener("close",function(event){
+         theDiv.innerHTML += "連線關閉!!<br>"
+       })
+       // WebSocket伺服器
+       // PHP  -> phpwebsockets
+       // Java -> jWebSocket
+       // Ruby -> web-socket-ruby
+       // Node.js -> Socket IO-node
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>未命名 1</title>
+<script>
+window.onload = function(){
+	var time = 600; //600 seconds = 10 minutes
+	var context = document.getElementById("canvas").getContext("2d");
+	context.font = "42px Arial";
+	context.textAlign = "center";
+	context.textBaseline = "middle";
+	context.lineWidth = 6;
+	function frame(){
+		time--;
+		var minutes = Math.floor(time/60);
+		var seconds = Math.floor(time % 60);
+		var text = (minutes < 10 ? "0":"") + minutes + ":" + (seconds < 10 ? "0":"") + seconds;
+		//context.clearRect(0,0,context.canvas.width,context.canvas.height);
+		context.strokeRect(50,50,110,40);
+		context.fillStyle = time % 10 === 0 ? "orange" : "whitesmoke";
+		context.fillRect(50,50,110,40);
+		context.fillStyle="black";
+		context.fillText(text,105,72);
+		
+		if(time > 0){
+			window.setTimeout(frame,1000);
+		}
+	}
+		frame();
+	
+}
+
+</script>
+</head>
+
+<body>
+<canvas id="canvas"></canvas>
+</body>
+
+</html>

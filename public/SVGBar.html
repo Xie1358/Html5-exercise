@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG Bar</title>
+    <style>
+        svg {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="svg1" width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+    </svg>
+
+    <script>
+        var mySvg = document.querySelector('#svg1');
+        var datas = [90, 50, 170, 180, 50, 60], w = 50, h = 0, x = 20;
+        var domRect = mySvg.getBoundingClientRect()
+        var y = domRect.height - 2
+        var xmlns = "http://www.w3.org/2000/svg";
+        for (var i = 0, max = datas.length; i < max; i++) {
+            h = datas[i];
+            var elem = document.createElementNS(xmlns, "rect");
+            elem.setAttributeNS(null, "x", x);
+            elem.setAttributeNS(null, "y", y - h);
+            elem.setAttributeNS(null, "width", w);
+            elem.setAttributeNS(null, "height", h);
+            elem.setAttributeNS(null, "fill", "blue");
+            mySvg.appendChild(elem);
+            x = x + w + 10;
+        }
+
+    </script>
+</body>
+
+</html>

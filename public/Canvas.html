@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas Demo</title>
+    <style>
+       #myCanvas{
+           border:1px solid green;
+       }
+    </style>
+</head>
+<body>
+    <!--Canvas預設大小300寬150高-->
+    <canvas id="myCanvas" width="400px" height="300px"></canvas>
+
+    <script>
+        var canvas = document.querySelector('#myCanvas');
+        var context = canvas.getContext('2d'); // 畫圖物件
+        //畫筆顏色
+        context.fillStyle="silver"; //填滿
+        context.strokeStyle="blue"; //外框線條
+        //畫筆粗細
+        context.lineWidth = 2;
+
+        //陰影效果
+        // context.shadowOffsetX = 4;
+        // context.shadowOffsetY = 2;
+        // context.shadowBlur=4; //模糊
+        // context.shadowColor = 'silver';
+
+        //矩形 這裡才是畫出圖
+        // context.strokeRect(100,160,200,90) // x y 寬 高
+        // context.fillRect(100,50,200,90)
+        // context.clearRect(150,70,100,60)
+
+        //線
+    //     context.beginPath();
+    //     context.moveTo(50,50);
+    //     context.lineTo(200,50);
+    //     context.lineTo(200,150);
+    //     context.closePath();
+    //     context.lineJoin = "round"; // 線調粗才看得出來
+    //    context.stroke(); // 開始繪製線條
+       
+    //    context.fill();
+
+       //端點的樣式 lineCap = butt(default)、round、square
+       //端點銜接的樣式 lineJoin = miter(default)、bevel、round
+
+       //弧
+       var x = canvas.width/2;
+       var y = canvas.height/2;
+    //    var r = 100;
+    //    context.moveTo(x,y);
+    //    context.arc(x,y,r,1 * Math.PI, 1.5 * Math.PI, false); // r是半徑 右下左上對應(0,0.5,1,1.5)PI, true是逆時鐘
+    // //    context.stroke();
+    // context.fill();
+
+       //圓
+    //    context.arc(x,y,r,0 * Math.PI, 2 * Math.PI, false);
+    //    context.stroke();
+    //    context.fill();
+
+    // var imgObject = new Image(); // 非同步概念
+    // imgObject.src = "images/cars.jpg";
+    // imgObject.addEventListener('load',function(){ // load事件發生後執行function
+    //    context.drawImage(imgObject,0,0); // 從 0 0 開始畫
+    //    context.drawImage(imgObject,0,0,200,150); // 原圖400 300 變200 150等於縮小       
+    //    context.drawImage(imgObject,190,85,200,180,0,0,100,90);// 從190,85開始裁切,切200 180的大小,從0 0顯示 大小是100 90
+    // })
+
+     //字
+     context.font = "48px arial";
+    context.textAlign = "center";
+    //context.fillText('Hello Cavans!!',x,y);
+    context.strokeText('Hello Cavans!!',x,y);
+    
+    </script>
+</body>
+</html>

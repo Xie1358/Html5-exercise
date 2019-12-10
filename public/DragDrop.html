@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drag And Drop</title>
+    <style>
+      .zone{
+          width:600px;
+          height:150px;
+          border:1px solid green;
+          margin:10px;
+      }
+      .item{
+          width:100px;
+          height:50px;
+          background-color:darkgreen;
+          margin:5px;
+          float: left;
+          text-align: center;
+          vertical-align: middle;
+          line-height: 50px;
+          color:white;
+          border-radius: 10px;
+
+      }
+      .over{
+          border:2px dotted red;
+      }
+    </style>
+</head>
+<body>
+    <div class="zone">
+        <div id="item1" class="item" draggable="true">Item1</div>
+        <div id="item2" class="item" draggable="true">Item2</div>        
+        <div id="item3" class="item" draggable="true">Item3</div>
+    </div>
+    <div class="zone"></div>
+   <a href="http://localhost:3000" id="a1">GoBack</a>
+    <script>
+        var items = document.querySelectorAll('.item');
+        for(var i=0,max=items.length;i<max;i++){
+            items[i].addEventListener('dragstart',dragstartHandler);//dragstart發生 觸發dragstartHandler
+        }
+        function dragstartHandler(event){
+             console.log(event)
+             console.log(event.target.id)
+             console.log(event.dataTransfer)
+            event.dataTransfer.setData('text/plain',event.target.id)//text/plain(表示存入純文字)))
+            
+        }
+
+        document.querySelector('#a1').addEventListener('click',function(event){
+           var flag = window.confirm("回首頁嗎??")
+           if(!flag){
+                event.preventDefault();//取消預設行為
+           }
+           
+        })
+
+        var zones = document.querySelectorAll('.zone');
+        for(var i=0,max=zones.length;i<max;i++){
+            zones[i].addEventListener('dragenter',function(event){
+               event.preventDefault();
+               event.target.classList.add('over')
+            })
+            zones[i].addEventListener('dragover',function(event){
+               event.preventDefault();
+            })
+            zones[i].addEventListener('dragleave',function(event){
+               event.preventDefault();
+               event.target.classList.remove('over')
+            })
+            zones[i].addEventListener('drop',dropHandler);
+        }
+        function dropHandler(event){
+            event.preventDefault();  //停止預設行為
+            event.stopPropagation(); //停止事件氣泡現象(停止事件往外(父階層)傳遞)
+
+            var id = event.dataTransfer.getData('text/plain');
+            var item = document.querySelector('#' + id);
+            event.target.classList.remove('over')
+            //移動元素
+            event.target.appendChild(item)
+            //複製元素
+            // event.target.appendChild(item.cloneNode(true));
+        }
+    </script>
+</body>
+</html>

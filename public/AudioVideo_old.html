@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Audio And Video</title>
+</head>
+<body> 
+  <!--  -->
+  <!-- preload='none' // auto(沒播放先載入) metadata(抓歌曲資訊 作詞作曲者,長度..)) none(沒播放不要先載入) -->
+  <!-- loop autoplay controls(出現UI介面) -->
+    <audio src="musics/好久不見.mp3" controls preload=''>
+      <a href="musics/好久不見.mp3">download</a> <!-- 瀏覽器看不懂audio標籤才出現這段 增加相容性 -->
+    </audio>
+
+   <!-- autoplay controls poster="../images/Cars.jpg"(影片沒播放預設圖片) -->
+    <video controls preload=''>
+      <source src="videos/big_buck_bunny.mp4" type="video/mp4" />
+      <source src="videos/big_buck_bunny.ogv" type="video/ogg" />
+      <source src="videos/big_buck_bunny.webm" type="video/webm" />
+      <track kind="subtitles" src="videos/bunny_en.vtt" srclang="English" default />
+      <track kind="subtitles" src="videos/bunny_zhtw.vtt" srclang="繁中"  />
+     瀏覽器不支援video標籤 <!-- 瀏覽器看不懂videos標籤才出現這段 增加相容性 -->
+    </video>
+    
+</body>
+</html>
